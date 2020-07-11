@@ -1,13 +1,24 @@
 let incomesArray = JSON.parse(localStorage.getItem('incomes') || '[]');
 let outcomesArray = JSON.parse(localStorage.getItem('outcomes') || '[]');
-let incomesSummary = (incomesArray.length > 0) ? calcucaleArraySum(incomesArray) : 0;
-let outcomesSummary = (outcomesArray.length > 0) ? calcucaleArraySum(outcomesArray) : 0;
-let lastIncomeId = 0;
-let lastOutcomeId = 0;
+let incomesSummary = (incomesArray.length > 0) ? calculateArraySum(incomesArray) : 0;
+let outcomesSummary = (outcomesArray.length > 0) ? calculateArraySum(outcomesArray) : 0;
+let lastIncomeId = (incomesArray.length > 0)?getMaxId(incomesArray):0;
+let lastOutcomeId = (outcomesArray.length > 0)?getMaxId(incomesArray):0;
 updateListUi('income');
 updateListUi('outcome');
 
-function calcucaleArraySum(array) {
+function getMaxId(array) {
+    console.log(array)
+    let lastId = 0;
+    array.forEach(element => {
+        if (element.id > lastId) {
+            lastId = element.id;
+        }
+    })
+    return lastId;
+}
+
+function calculateArraySum(array) {
     let summary = 0;
     array.forEach(arg => {
         summary += Number(arg.value);
@@ -17,6 +28,7 @@ function calcucaleArraySum(array) {
 
 
 function addIncome() {
+    console.log(incomesArray)
     let incomeValue = document.querySelector('#income-value').value;
     let incomeName = document.querySelector('#income-name').value;
     let item = {
@@ -27,7 +39,7 @@ function addIncome() {
     lastIncomeId++;
     incomesArray.push(item);
     localStorage.setItem("incomes", JSON.stringify(incomesArray));
-    incomesSummary = calcucaleArraySum(incomesArray);
+    incomesSummary = calculateArraySum(incomesArray);
     updateListUi("income");
 }
 
@@ -42,14 +54,14 @@ function addOutcome() {
     lastOutcomeId++;
     outcomesArray.push(item);
     localStorage.setItem("outcomes", JSON.stringify(incomesArray));
-    outcomesSummary = calcucaleArraySum(outcomesArray);
+    outcomesSummary = calculateArraySum(outcomesArray);
     updateListUi('outcome');
 }
 
 function removeIncome(event) {
     const idToDelete = Number(event.target.id);
     incomesArray = incomesArray.filter(element => element.id !== idToDelete);
-    incomesSummary = calcucaleArraySum(incomesArray);
+    incomesSummary = calculateArraySum(incomesArray);
     localStorage.setItem("incomes", JSON.stringify(incomesArray));
     updateListUi('income');
 }
@@ -57,7 +69,7 @@ function removeIncome(event) {
 function removeOutcome(event) {
     const idToDelete = Number(event.target.id);
     outcomesArray = outcomesArray.filter(element => element.id !== idToDelete);
-    outcomesSummary = calcucaleArraySum(outcomesArray);
+    outcomesSummary = calculateArraySum(outcomesArray);
     localStorage.setItem("outcomes", JSON.stringify(outcomesArray));
     updateListUi('outcome');
 }
