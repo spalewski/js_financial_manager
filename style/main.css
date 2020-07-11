@@ -1,0 +1,39 @@
+body {
+    background-color: #f6f6f6;
+}
+
+.container--summary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container--tables{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.logo {
+    display: flex;
+    width: 200px;
+    height: 200px;
+    background-color: green;
+    text-align: center;
+    justify-content: center;
+    background-image: url("../img/money.png");
+    background-size: contain;
+}
+
+.incomes, .outcomes, .list {
+    padding: 1% 2%;
+    width: 50%;
+}
+
+.bordered{
+    border: 1px solid black;
+}
+
+.entry-input {
+    padding: 0 0 34px;
+}
