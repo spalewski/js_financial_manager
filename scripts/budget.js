@@ -1,6 +1,5 @@
 let incomesSummary = 0;
 let outcomesSummary = 0;
-let summary = 0;
 let incomesArray = [];
 let outcomesArray = [];
 let lastIncomeId = 0;
@@ -11,10 +10,11 @@ function caluclateSummary(incomes, outcomes, type) {
 }
 
 function calcucaleArraySum(array) {
-    let incomesSummary = 0;
+    let summary = 0;
     array.forEach(arg => {
-        incomesSummary += Number(arg.value);
+        summary += Number(arg.value);
     });
+    return summary;
 }
 
 
@@ -42,6 +42,20 @@ function addOutcome() {
     }
     lastOutcomeId++;
     outcomesArray.push(item);
+    outcomesSummary = calcucaleArraySum(outcomesArray);
+    updateListUi('outcome');
+}
+
+function removeIncome(event) {
+    const idToDelete = Number(event.target.id);
+    incomesArray = incomesArray.filter(element => element.id !== idToDelete);
+    incomesSummary = calcucaleArraySum(incomesArray);
+    updateListUi('income');
+}
+
+function removeOutcome(event) {
+    const idToDelete = Number(event.target.id);
+    outcomesArray = outcomesArray.filter(element => element.id !== idToDelete);
     outcomesSummary = calcucaleArraySum(outcomesArray);
     updateListUi('outcome');
 }
@@ -75,8 +89,6 @@ function updateListUi(type) {
         valueElem.innerText = entry.value;
         const removeElem = document.createElement('button');
         removeElem.classList.add('btn', 'btn-outline-danger')
-        removeElem.style.setProperty('position', "absolute");
-        removeElem.style.setProperty('left', "-1px");
         removeElem.innerText = 'Usuń';
         removeElem.id = entry.id;
 
@@ -91,18 +103,25 @@ function updateListUi(type) {
         elementValue.appendChild(valueElem);
         element.appendChild(incomeRow);
     });
+    setListSummary(type)
+    setSummary();
 }
 
-function removeIncome(event) {
-    const idToDelete = Number(event.target.id);
-    incomesArray = incomesArray.filter(element => element.id !== idToDelete);
-    calcucaleArraySum(incomesArray);
-    updateListUi("income");
+function setListSummary(type) {
+    if (type === "income") {
+        const incomeSummary = document.getElementById('income-summary-span');
+        incomeSummary.innerText = '';
+        incomeSummary.innerText = incomesSummary;
+    } else {
+        const outcomeSummary = document.getElementById('outcome-summary-span');
+        outcomeSummary.innerText = '';
+        outcomeSummary.innerText = outcomesSummary
+    }
 }
 
-function removeOutcome(event) {
-    const idToDelete = Number(event.target.id);
-    outcomesArray = outcomesArray.filter(element => element.id !== idToDelete);
-    calcucaleArraySum(outcomesArray);
-    updateListUi("outcome");
+function setSummary() {
+    let summary = incomesSummary - outcomesSummary;
+    const summaryDiv = document.body.querySelector(".message");
+    summaryDiv.innerHTML = '';
+    summaryDiv.innerHTML = 'Możesz jeszcze wydać ' + summary + ' zł';
 }

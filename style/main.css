@@ -42,5 +42,9 @@ body {
 }
 
 .bordered {
-    border: 1px solid black;
+    border: 1px solid darkgrey;
+    margin: 0 auto;
+}
+.row{
+    width: 500px;
 }
