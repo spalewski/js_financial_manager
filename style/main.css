@@ -28,20 +28,19 @@ body {
 }
 
 .incomes, .outcomes, .list {
-    padding: 1% 2%;
+    padding: 1%;
     width: 500px;
+    min-height: 40vh;
     display: flex;
     flex-direction: column;
-   justify-content: space-between;
+    justify-content: space-between;
+}
+
+.incomes-list, .outcomes-list {
+    height: 300px;
+    overflow: scroll;
 }
 
 .bordered {
     border: 1px solid black;
-}
-
-.entry-input {
-    padding: 0 0 34px;
-}
-.incomes-list{
-    width: 100%;
 }

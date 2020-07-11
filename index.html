@@ -29,20 +29,20 @@
 
 		<div class="incomes bordered">
 			<h3>PRZYCHODY</h3>
-				<div class="row">
-					<div class="col-6">
-						<input class="form-control" id="income-name" placeholder="Nazwa przychodu" type="text">
-					</div>
-					<div class="col">
-						<input class="form-control" id="income-value" placeholder="Kwota" type="number">
-					</div>
-					<div class="col">
-						<button class="btn btn-primary" id="submit-income" onclick="addIncome()">Dodaj</button>
-					</div>
+			<div class="row">
+				<div class="col-6">
+					<input class="form-control" id="income-name" placeholder="Nazwa przychodu" type="text">
 				</div>
+				<div class="col">
+					<input class="form-control" id="income-value" placeholder="Kwota" type="number">
+				</div>
+				<div class="col">
+					<button class="btn btn-primary" id="submit-income" onclick="addIncome()">Dodaj</button>
+				</div>
+			</div>
 			<hr>
 			<div class="list">
-				<div id="incomes-list">
+				<div class="incomes-list" id="incomes-list">
 				</div>
 				<div class="lists-summary">
 					<span>Suma przychodów </span><span id="income-summary-span">0</span> <span>zł</span>
@@ -53,24 +53,21 @@
 
 		<div class="outcomes bordered">
 			<h3>WYDATKI</h3>
-				<div class="row">
-					<div class="col-6">
-						<input class="form-control" id="outcome-name" placeholder="Nazwa wydatku" type="text">
-					</div>
-					<div class="col">
-						<input class="form-control" id="outcome-value" placeholder="Kwota" type="number">
-					</div>
-					<div class="col">
-						<button class="btn btn-primary" id="submit-outcome" type="submit">Dodaj</button>
-					</div>
+			<div class="row">
+				<div class="col-6">
+					<input class="form-control" id="outcome-name" placeholder="Nazwa wydatku" type="text">
 				</div>
+				<div class="col">
+					<input class="form-control" id="outcome-value" placeholder="Kwota" type="number">
+				</div>
+				<div class="col">
+					<button class="btn btn-primary" id="submit-outcome" onclick="addOutcome()">Dodaj</button>
+				</div>
+			</div>
 			<hr>
 			<div class="list">
-				<ul class="outcomes-list">
-					<li>
-						1
-					</li>
-				</ul>
+				<div class="outcomes-list" id="outcomes-list">
+				</div>
 				<div class="lists-summary">
 					<span>Suma wydatków </span><span id="outcome-summary-span">0</span> <span>zł</span>
 				</div>
