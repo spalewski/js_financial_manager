@@ -1,5 +1,6 @@
 let incomesArray = JSON.parse(localStorage.getItem('incomes') || '[]');
 let outcomesArray = JSON.parse(localStorage.getItem('outcomes') || '[]');
+console.log(outcomesArray)
 let incomesSummary = (incomesArray.length > 0) ? calculateArraySum(incomesArray) : 0;
 let outcomesSummary = (outcomesArray.length > 0) ? calculateArraySum(outcomesArray) : 0;
 let lastIncomeId = (incomesArray.length > 0)?getMaxId(incomesArray):0;
@@ -27,7 +28,6 @@ function calculateArraySum(array) {
 
 
 function addIncome() {
-    console.log(incomesArray)
     let incomeValue = document.querySelector('#income-value').value;
     let incomeName = document.querySelector('#income-name').value;
     let item = {
@@ -52,7 +52,7 @@ function addOutcome() {
     }
     lastOutcomeId++;
     outcomesArray.push(item);
-    localStorage.setItem("outcomes", JSON.stringify(incomesArray));
+    localStorage.setItem("outcomes", JSON.stringify(outcomesArray));
     outcomesSummary = calculateArraySum(outcomesArray);
     updateListUi('outcome');
 }
