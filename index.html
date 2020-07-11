@@ -29,25 +29,22 @@
 
 		<div class="incomes bordered">
 			<h3>PRZYCHODY</h3>
-			<form>
 				<div class="row">
 					<div class="col-6">
-						<input class="form-control" name="income-name" placeholder="Nazwa przychodu" type="text">
+						<input class="form-control" id="income-name" placeholder="Nazwa przychodu" type="text">
 					</div>
 					<div class="col">
-						<input class="form-control" name="income-value" placeholder="Kwota" type="number">
+						<input class="form-control" id="income-value" placeholder="Kwota" type="number">
 					</div>
 					<div class="col">
-						<button class="btn btn-primary" id="submit-income" type="submit">Dodaj</button>
+						<button class="btn btn-primary" id="submit-income" onclick="addIncome()">Dodaj</button>
 					</div>
 				</div>
-			</form>
 			<hr>
 			<div class="list">
-				<ul class="incomes-list">
-				</ul>
-
-				<div class="-lists-summary">
+				<div id="incomes-list">
+				</div>
+				<div class="lists-summary">
 					<span>Suma przychodów </span><span id="income-summary-span">0</span> <span>zł</span>
 				</div>
 			</div>
@@ -56,24 +53,27 @@
 
 		<div class="outcomes bordered">
 			<h3>WYDATKI</h3>
-			<form>
 				<div class="row">
 					<div class="col-6">
-						<input class="form-control" name="outcome-name" placeholder="Nazwa wydatku" type="text">
+						<input class="form-control" id="outcome-name" placeholder="Nazwa wydatku" type="text">
 					</div>
 					<div class="col">
-						<input class="form-control" name="outcome-value" placeholder="Kwota" type="number">
+						<input class="form-control" id="outcome-value" placeholder="Kwota" type="number">
 					</div>
 					<div class="col">
 						<button class="btn btn-primary" id="submit-outcome" type="submit">Dodaj</button>
 					</div>
 				</div>
-			</form>
 			<hr>
 			<div class="list">
 				<ul class="outcomes-list">
+					<li>
+						1
+					</li>
 				</ul>
-				<span>Suma wydatków </span><span id="outcome-summary-span">0</span> <span>zł</span>
+				<div class="lists-summary">
+					<span>Suma wydatków </span><span id="outcome-summary-span">0</span> <span>zł</span>
+				</div>
 			</div>
 		</div>
 	</div>

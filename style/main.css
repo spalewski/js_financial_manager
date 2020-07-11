@@ -9,9 +9,11 @@ body {
     flex-direction: column;
 }
 
-.container--tables{
+.container--tables {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .logo {
@@ -27,13 +29,19 @@ body {
 
 .incomes, .outcomes, .list {
     padding: 1% 2%;
-    width: 50%;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+   justify-content: space-between;
 }
 
-.bordered{
+.bordered {
     border: 1px solid black;
 }
 
 .entry-input {
     padding: 0 0 34px;
+}
+.incomes-list{
+    width: 100%;
 }
