@@ -29,7 +29,7 @@ body {
 
 .incomes, .outcomes, .list {
     padding: 1%;
-    width: 500px;
+    width: 520px;
     min-height: 40vh;
     display: flex;
     flex-direction: column;
