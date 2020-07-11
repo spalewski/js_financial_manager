@@ -8,7 +8,6 @@ updateListUi('income');
 updateListUi('outcome');
 
 function getMaxId(array) {
-    console.log(array)
     let lastId = 0;
     array.forEach(element => {
         if (element.id > lastId) {
