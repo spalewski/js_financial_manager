@@ -38,7 +38,7 @@ body {
 .incomes-list, .outcomes-list {
     height: 300px;
     width: 500px;
-    overflow: scroll;
+    overflow-y: auto;
 }
 
 .bordered {
