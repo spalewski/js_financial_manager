@@ -46,6 +46,11 @@ body {
     margin: 0 auto;
 }
 
-.row {
+.row, .lists-summary-incomes, .lists-summary-outcomes {
     width: 500px;
+}
+
+.edit-row {
+    width: 500px;
+    margin-left: 0;
 }
