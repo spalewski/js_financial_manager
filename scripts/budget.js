@@ -57,7 +57,8 @@ function addOutcome() {
 }
 
 function removeIncome(event) {
-    const idToDelete = Number(event.target.id);
+    let idToDelete = event.target.id;
+    idToDelete = Number(idToDelete.substr(7, idToDelete.length));
     incomesArray = incomesArray.filter(element => element.id !== idToDelete);
     incomesSummary = calculateArraySum(incomesArray);
     localStorage.setItem("incomes", JSON.stringify(incomesArray));
@@ -65,7 +66,8 @@ function removeIncome(event) {
 }
 
 function removeOutcome(event) {
-    const idToDelete = Number(event.target.id);
+    let idToDelete = event.target.id;
+    idToDelete = Number(idToDelete.substr(7, idToDelete.length));
     outcomesArray = outcomesArray.filter(element => element.id !== idToDelete);
     outcomesSummary = calculateArraySum(outcomesArray);
     localStorage.setItem("outcomes", JSON.stringify(outcomesArray));
@@ -74,7 +76,8 @@ function removeOutcome(event) {
 
 function editIncome(event) {
     updateListUi('income');
-    const idToEdit = Number(event.target.id);
+    let idToEdit = event.target.id;
+    idToEdit = Number(idToEdit.substr(5, idToEdit.length));
     const elementToEdit = document.body.querySelector(".income_" + idToEdit);
     elementToEdit.innerHTML = "<div class='row edit-row'>" +
         "<div class='col-6'>" +
@@ -109,7 +112,8 @@ function saveEditIncome(id) {
 
 function editOutcome(event) {
     updateListUi('outcome');
-    const idToEdit = Number(event.target.id);
+    let idToEdit = event.target.id;
+    idToEdit = Number(idToEdit.substr(5, idToEdit.length));
     const elementToEdit = document.body.querySelector(".outcome_" + idToEdit);
     elementToEdit.innerHTML = "<div class='row edit-row'>" +
         "<div class='col-6'>" +
@@ -174,12 +178,12 @@ function updateListUi(type) {
         const removeElem = document.createElement('button');
         removeElem.classList.add('btn', 'btn-outline-danger')
         removeElem.innerText = 'Usuń';
-        removeElem.id = entry.id;
+        removeElem.id = 'remove_' + entry.id;
 
         const editElem = document.createElement('button');
         editElem.classList.add('btn', 'btn-outline-primary')
         editElem.innerText = 'Edytuj';
-        editElem.id = entry.id;
+        editElem.id = 'edit_' + entry.id;
 
         if (type === "income") {
             removeElem.addEventListener('click', removeIncome)
