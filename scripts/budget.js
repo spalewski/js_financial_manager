@@ -29,31 +29,35 @@ function calculateArraySum(array) {
 function addIncome() {
     let incomeValue = document.querySelector('#income-value').value;
     let incomeName = document.querySelector('#income-name').value;
-    let item = {
-        id: lastIncomeId,
-        name: incomeName,
-        value: incomeValue
+    if (validateInput([incomeValue, incomeName])) {
+        let item = {
+            id: lastIncomeId,
+            name: incomeName,
+            value: incomeValue
+        }
+        lastIncomeId++;
+        incomesArray.push(item);
+        localStorage.setItem("incomes", JSON.stringify(incomesArray));
+        incomesSummary = calculateArraySum(incomesArray);
+        updateListUi("income");
     }
-    lastIncomeId++;
-    incomesArray.push(item);
-    localStorage.setItem("incomes", JSON.stringify(incomesArray));
-    incomesSummary = calculateArraySum(incomesArray);
-    updateListUi("income");
 }
 
 function addOutcome() {
     let outcomeValue = document.querySelector('#outcome-value').value;
     let outcomeName = document.querySelector('#outcome-name').value;
-    let item = {
-        id: lastOutcomeId,
-        name: outcomeName,
-        value: outcomeValue
+    if (validateInput([outcomeValue, outcomeName])) {
+        let item = {
+            id: lastOutcomeId,
+            name: outcomeName,
+            value: outcomeValue
+        }
+        lastOutcomeId++;
+        outcomesArray.push(item);
+        localStorage.setItem("outcomes", JSON.stringify(outcomesArray));
+        outcomesSummary = calculateArraySum(outcomesArray);
+        updateListUi('outcome');
     }
-    lastOutcomeId++;
-    outcomesArray.push(item);
-    localStorage.setItem("outcomes", JSON.stringify(outcomesArray));
-    outcomesSummary = calculateArraySum(outcomesArray);
-    updateListUi('outcome');
 }
 
 function removeIncome(event) {
@@ -95,18 +99,22 @@ function editIncome(event) {
 function saveEditIncome(id) {
     let incomeValue = document.querySelector('#income-value-edit').value;
     let incomeName = document.querySelector('#income-name-edit').value;
-    let item = {
-        id: id,
-        name: incomeName,
-        value: incomeValue
+    if (validateInput([incomeValue, incomeName])) {
+        {
+            let item = {
+                id: id,
+                name: incomeName,
+                value: incomeValue
+            }
+            incomesArray.find(function (entry, index) {
+                if (entry.id === id)
+                    incomesArray[index] = item;
+            });
+            incomesSummary = calculateArraySum(incomesArray);
+            localStorage.setItem("incomes", JSON.stringify(incomesArray));
+            updateListUi('income');
+        }
     }
-    incomesArray.find(function (entry, index) {
-        if (entry.id === id)
-            incomesArray[index] = item;
-    });
-    incomesSummary = calculateArraySum(incomesArray);
-    localStorage.setItem("incomes", JSON.stringify(incomesArray));
-    updateListUi('income');
 }
 
 
@@ -132,18 +140,20 @@ function editOutcome(event) {
 function saveEditOutcome(id) {
     let outcomeValue = document.querySelector('#outcome-value-edit').value;
     let outcomeName = document.querySelector('#outcome-name-edit').value;
-    let item = {
-        id: id,
-        name: outcomeName,
-        value: outcomeValue
+    if (validateInput([outcomeValue, outcomeName])) {
+        let item = {
+            id: id,
+            name: outcomeName,
+            value: outcomeValue
+        }
+        outcomesArray.find(function (entry, index) {
+            if (entry.id === id)
+                outcomesArray[index] = item;
+        });
+        outcomesSummary = calculateArraySum(outcomesArray);
+        localStorage.setItem("outcomes", JSON.stringify(outcomesArray));
+        updateListUi('outcome');
     }
-    outcomesArray.find(function (entry, index) {
-        if (entry.id === id)
-            outcomesArray[index] = item;
-    });
-    outcomesSummary = calculateArraySum(outcomesArray);
-    localStorage.setItem("outcomes", JSON.stringify(outcomesArray));
-    updateListUi('outcome');
 }
 
 function updateListUi(type) {
@@ -220,4 +230,13 @@ function setSummary() {
     const summaryDiv = document.body.querySelector(".message");
     summaryDiv.innerHTML = '';
     summaryDiv.innerHTML = 'Możesz jeszcze wydać ' + summary + ' zł';
+}
+
+function validateInput(input) {
+    if (!input.some(value => value.length === 0)) {
+        return true
+    } else {
+        alert('Wszystkie pola muszą zostać uzupełnione')
+        return false
+    }
 }
